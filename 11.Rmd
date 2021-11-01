@@ -34,6 +34,7 @@ boulder
 ```
 
 This Here are the details of data: 
+
 |  Variable  |  Description   |
 |------------|-----------------------------------------------------------------------------------|
 | DB |  indicates whether the point is a   social media location (Flickr or Panramio) or a point in the park |
@@ -91,4 +92,9 @@ The middle value of the distance from biking trails to the location of social me
 ## Conclusion
 
 Boulder is definitely **a bike-friendly city**, it has dense bike lanes, and many of the natural landmarks are close to each other, so people can ride a bike to get to there instead of driving a car.The setting of biking trails is relatively appropriate most of the social media picture is taken not far away from the trails.
+
+
+
+## What are the benefits and challenges of an open data science approach? Give an example based on this week's reading. (1-2 paragraphs)
+
 

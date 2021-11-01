@@ -1,5 +1,5 @@
 ---
-title: "How the elevation effects the extent that can be viewed at each point"
+title: "Is Boulder a bike-friendly tourist city? "
 author: "Zhongyi Zhang"
 date: "2021/10/31"
 output: html_document
@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Introduction to Boulder
 The City of Boulder is a home rule municipality that is the county seat and most populous municipality of Boulder County, Colorado, United States.Boulder is located at the base of the foothills of the Rocky Mountains, at an elevation of 5,430 feet (1,655 m) above sea level. Boulder is 25 miles (40 km) northwest of the Colorado State Capitol in Denver. 
 It's a beautiful city with many nature landmarks and there are always some hikers and cyclists along the streets.
-So I want to examine the basic geographic information (including elevation and bike lanes), distance to natural landmarks, and compare the distance from roads and social media photographs, to find out the tourism resources situation in Boulder.
+So I want to examine the basic geographic information (including elevation and bike lanes), distance to natural landmarks, and compare the distance from biking trails and social media photographs, to find out is Boulder a bike-friendly tourist city.
 
 ## Data and packages
 
@@ -51,15 +51,35 @@ ggplot() +
           fill = NA, alpha = .1) + 
   scale_colour_gradientn(colours = magma(10))
 ```
+
 As we can see from the map, the west part of the mountain is higher than the east part. And the bike lanes is very dense in the city. It's a good city for cyclists.
 
+## The distance from natural landmarks
 
-## 
+```{r}
+ggplot() +
+    geom_sf(data =boulder, aes(color=NatMrk_Dis),
+    fill = NA, alpha = .2) +
+  scale_colour_gradientn(colours = terrain.colors(10)) +  
+  theme_bw()
+```
+There are five landmarks in the area we examined. And due to its high density, the distance from most of tourists in this area is less than 1000 meters. It's easy for the tourists to get to there within a day.
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+## The distance from biking trails and social media photographs
+
+Then we can compare the distance from biking trails and social media photographs.
+```{r}
+boulder %>%
+  filter(DB ==  'Pano' | DB == 'Flickr') %>%
+  ggplot(aes(x=DB, y=Bike_dis)) + 
+  geom_boxplot()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+The middle value of the distance from biking trails to the location of social media photographs is pretty close, which is around 800 meters. The interquartile range of both is pretty similar. The data from Flickr has a much bigger range compare to the data from Pano. In conclusion, if the cyclists want to find a good location to take a photo then post on the social media, they better check the Flickr, and most of the good location is not far from the biking trails.
+
+
+## Conclusion
+
+Boulder is definitely a bike-friendly city, it has dense bike lanes, and many of the natural landmarks are close to each other, so people can ride a bike to get to there instead of driving a car.The setting of biking trails is relatively appropriate most of the social media picture is taken not far away from the trails.
+

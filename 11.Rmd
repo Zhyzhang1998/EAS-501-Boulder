@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "How the elevation effects the extent that can be viewed at each point"
 author: "Zhongyi Zhang"
 date: "2021/10/31"
 output: html_document
@@ -9,21 +9,52 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Introduction to Boulder
+The City of Boulder is a home rule municipality that is the county seat and most populous municipality of Boulder County, Colorado, United States.Boulder is located at the base of the foothills of the Rocky Mountains, at an elevation of 5,430 feet (1,655 m) above sea level. Boulder is 25 miles (40 km) northwest of the Colorado State Capitol in Denver. 
+It's a beautiful city with many nature landmarks and there are always some hikers and cyclists along the streets.
+So I want to examine the basic geographic information (including elevation and bike lanes), distance to natural landmarks, and compare the distance from roads and social media photographs, to find out the tourism resources situation in Boulder.
+
 ## Data and packages
 
 ```{r}
 library(ggplot2)
 library(sf)
 library(tidyverse)
+library(ggspatial)
+library(viridis)
 ```
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+At first, we need some packages for the geovisualizations. Use `library()` function to intialize them.
 
-```{r cars}
-summary(cars)
+Then we should grab some data [here](https://drive.google.com/drive/folders/1YuX5oWjKS6vZx4zNyPwBKuiw9EJYNX5L?usp=sharing) from Google drive. And import the data as a sf spatial dataset.
+
+```{r}
+boulder <- st_read("~/adv lab1/drive-download-20211031T042259Z-001/BoulderSocialMedia.shp")
+boulder
 ```
 
-## Including Plots
+
+## Basic geographic information
+
+We need to choose an appropriate projection.
+
+```{r}
+boulder = st_transform(boulder, 26753) 
+```
+
+We can use the `ggplot2` to plot the elevation data and grab the base map of bike lanes from the [OpenStreetMap](https://www.openstreetmap.org/search?query=boulder#map=12/40.0294/-105.2398).
+
+```{r}
+ggplot() +
+  annotation_map_tile(type = "http://toolserver.org/tiles/hikebike/${z}/${x}/${y}.png") +
+  geom_sf(data = boulder, aes(color=PT_Elev),
+          fill = NA, alpha = .1) + 
+  scale_colour_gradientn(colours = magma(10))
+```
+As we can see from the map, the west part of the mountain is higher than the east part. And the bike lanes is very dense in the city. It's a good city for cyclists.
+
+
+## 
 
 You can also embed plots, for example:
 

@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Introduction to Boulder
 The City of Boulder is a home rule municipality that is the county seat and most populous municipality of Boulder County, Colorado, United States.Boulder is located at the base of the foothills of the Rocky Mountains, at an elevation of 5,430 feet (1,655 m) above sea level. Boulder is 25 miles (40 km) northwest of the Colorado State Capitol in Denver. 
 It's a beautiful city with many nature landmarks and there are always some hikers and cyclists along the streets.
-So I want to examine the basic geographic information (including elevation and bike lanes), distance to natural landmarks, and compare the distance from biking trails and social media photographs, to find out is Boulder a bike-friendly tourist city.
+So I want to examine the basic geographic information (including *elevation* and *bike lanes*), distance to natural landmarks, and compare the distance from biking trails and social media photographs, to find out is Boulder a bike-friendly tourist city.
 
 ## Data and packages
 
@@ -33,6 +33,14 @@ boulder <- st_read("~/adv lab1/drive-download-20211031T042259Z-001/BoulderSocial
 boulder
 ```
 
+This Here are the details of data: 
+|  Variable  |  Description   |
+|------------|-----------------------------------------------------------------------------------|
+| DB |  indicates whether the point is a   social media location (Flickr or Panramio) or a point in the park |
+| NatMrk_Dis |  distance to natural landmark |
+| Bike_dis |  distance to biking trails |
+| PT_Elev |  Elevation |
+
 
 ## Basic geographic information
 
@@ -52,7 +60,8 @@ ggplot() +
   scale_colour_gradientn(colours = magma(10))
 ```
 
-As we can see from the map, the west part of the mountain is higher than the east part. And the bike lanes is very dense in the city. It's a good city for cyclists.
+As we can see from the map, the west part of the mountain is higher than the east part. And the bike lanes is very dense in the city. It's a **good** city for cyclists.
+There are many other 
 
 ## The distance from natural landmarks
 
@@ -81,5 +90,5 @@ The middle value of the distance from biking trails to the location of social me
 
 ## Conclusion
 
-Boulder is definitely a bike-friendly city, it has dense bike lanes, and many of the natural landmarks are close to each other, so people can ride a bike to get to there instead of driving a car.The setting of biking trails is relatively appropriate most of the social media picture is taken not far away from the trails.
+Boulder is definitely **a bike-friendly city**, it has dense bike lanes, and many of the natural landmarks are close to each other, so people can ride a bike to get to there instead of driving a car.The setting of biking trails is relatively appropriate most of the social media picture is taken not far away from the trails.
 
